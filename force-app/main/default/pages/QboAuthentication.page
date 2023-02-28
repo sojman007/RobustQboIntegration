@@ -1,0 +1,13 @@
+<apex:page controller="QboAuthenticationController" >
+ <!-- this page serves as the caller and the callback url for QBO authentication -->   
+	<apex:form >
+    	<apex:pageBlock >
+            <apex:pageBlockButtons location="top" >
+            	<apex:commandButton value="Authorize" action="{!Authorize}">
+                	
+                </apex:commandButton>
+            </apex:pageBlockButtons>
+        
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
