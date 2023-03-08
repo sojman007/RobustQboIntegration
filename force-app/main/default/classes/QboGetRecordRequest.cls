@@ -58,12 +58,13 @@ public class QboGetRecordRequest extends QboCalloutService.BaseRequest {
             // NOTE : sets the Salesforce Id for when the operation is an update operation.
             // when its a create, the Id is not set , this logic is encapsulated in the QboDataObject
             QboDataObject parsedData = (QboDataObject)Json.deserialize(newJson, parseTarget);
-            logger.log('parsed data = > \n' +json.serialize(parsedData));
-            logger.close();
             if(dataSaveMode == QboEnums.DATA_SAVE_MODE.MODIFY){
                 string recordId = getSfRecordId(entityName, parsedData.Id);
+                logger.log('found sf record id : ' + recordId);
                 parsedData.sfRecordId = recordid;
             }
+            logger.log('parsed data = > \n' +json.serialize(parsedData));
+            logger.close();
             QboInsertionTree.QboInsertionNode node = new QboInsertionTree.QboInsertionNode(parsedData);
             QboInsertionTree tree = new QboInsertionTree(node);
             System.enqueueJob(tree);

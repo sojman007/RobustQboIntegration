@@ -26,14 +26,14 @@ public abstract class QboInvoiceLine extends QboAbstractDataChildObject{
     public virtual class QboSalesLineItem extends QboInvoiceLine  implements IConvertible{
        
         public QboSalesLineItemDetail  SalesItemLineDetail {get;set;}
-        public decimal Amount {get;set;}
+        public double Amount {get;set;}
 
         // sets values appropriate to the the sales line item
         public Sobject convert(){
             Invoice_Line_Item__c lineItem = (Invoice_Line_Item__c)setDefaults(convertBase());
             lineItem.Amount__c = this.Amount;
             lineItem.Tax_Inclusive_Amount__c = this.SalesItemLineDetail.TaxInclusiveAmt;
-            lineItem.Service_Date__c = Date.valueOf(this.SalesItemLineDetail.ServiceDate.data);
+            lineItem.Service_Date__c = this.SalesItemLineDetail.ServiceDate;
             lineItem.Discount_Rate__c = this.SalesItemLineDetail.DiscountRate;
             lineItem.Qty__c = this.SalesItemLineDetail.Qty;
             lineItem.Unit_Price__c = this.SalesItemLineDetail.UnitPrice;
@@ -67,7 +67,7 @@ public abstract class QboInvoiceLine extends QboAbstractDataChildObject{
         public Sobject convert(){
             Invoice_Line_Item__c lineItem = (Invoice_Line_Item__c)setDefaults(convertBase());
             lineItem.Tax_Code_Reference__c = this.DescriptionLineDetail.TaxCodeRef.value;
-            lineItem.Service_Date__c = Date.valueOf(this.DescriptionLineDetail.ServiceDate.data);
+            lineItem.Service_Date__c = this.DescriptionLineDetail.ServiceDate;
             return lineItem;
         }
         
@@ -139,18 +139,18 @@ public abstract class QboInvoiceLine extends QboAbstractDataChildObject{
     // sales line item detail used in the QboSalesLineItem
     public virtual class QboSalesLineItemDetail{
         
-        public decimal TaxInclusiveAmt {get;set;}
-        public decimal DiscountAmt {get;set;}
-        public decimal DiscountRate {get;set;}
-        public decimal Qty {get;set;}
-        public decimal UnitPrice {get;set;}
-        public QboDataObject.QDate ServiceDate {get;set;}
+        public double TaxInclusiveAmt {get;set;}
+        public double DiscountAmt {get;set;}
+        public double DiscountRate {get;set;}
+        public double Qty {get;set;}
+        public double UnitPrice {get;set;}
+        public Date ServiceDate {get;set;}
     }
     
     public virtual class QboDescriptionOnlyLineDetail {
         
         public QboDataObject.ReferenceType TaxCodeRef {get;set;}
-        public QboDataObject.QDate ServiceDate {get;set;}
+        public Date ServiceDate {get;set;}
         
     }
     

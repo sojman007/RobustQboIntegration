@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sbox_Verifier_Token__c</fullName>
+    <description>Token used to verify webhook events sent into salesforce from QBO</description>
+    <externalId>false</externalId>
+    <label>Sbox Verifier Token</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

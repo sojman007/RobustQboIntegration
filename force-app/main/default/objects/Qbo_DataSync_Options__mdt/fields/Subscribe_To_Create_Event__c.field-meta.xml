@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subscribe_To_Create_Event__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Permits actions after we receive a create event fromm qbo</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Subscribe To Create Event</label>
+    <type>Checkbox</type>
+</CustomField>

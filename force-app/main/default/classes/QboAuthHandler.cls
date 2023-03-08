@@ -21,6 +21,8 @@ public class QboAuthHandler {
     private QboAuthHandler(){
         QbObjectSelector selector = new QbObjectSelector('QB_Token__c');
         List<Sobject> data = selector.getMostRecent(QbObjectSelector.DbOp.CREATED,1);
+        QboLogger logger = QboLogger.getInstance();
+        logger.log('at instantiating auth handler : token is ' + JSON.serialize(data));
         if(data != null && data.size() > 0){
             token = (QB_Token__c)data[0];
             accessCode = token.Auth_Token__c;
@@ -30,9 +32,7 @@ public class QboAuthHandler {
             // check Local storage for access Code ...
             accessCode = (string)localStorage.get('accesscode');
             realmId = (string)localStorage.get('realmId');
-
         }
-        
     }
     
     // exposes api for other callers to access datapoints from the authentication HTTP callout

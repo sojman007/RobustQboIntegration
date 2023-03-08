@@ -8,7 +8,7 @@ public virtual class QboInsertionTree extends IAsyncCollectionDS_Link implements
     
     
     
-    
+    // can we abort the event processing queue job here ??
     public class QboInsertionNode extends IAsyncCollectionDsNode{
         
         public QboInsertionNode(QboDataObject data){
@@ -32,8 +32,7 @@ public virtual class QboInsertionTree extends IAsyncCollectionDS_Link implements
         
     }
     
-    
-    public void execute(System.QueueableContext context){
+    public void execute(){
         Sobject recordToinsert;
         try{
             QboInsertionNode toExecute = (QboInsertionNode)getNext();
@@ -59,11 +58,14 @@ public virtual class QboInsertionTree extends IAsyncCollectionDS_Link implements
                 index += 1;
                 system.enqueueJob(this);
             }
-        	    
+        
         }catch(Exception e){
-         	   
-            
+        
         }
+    }
+    
+    public void execute(System.QueueableContext context){
+       execute();
     }
 
 }

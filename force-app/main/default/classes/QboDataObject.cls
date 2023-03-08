@@ -28,18 +28,18 @@ public abstract class QboDataObject {
     /**
      * 
      * COMMON TYPES DEFINED BELOW 
-     * QDate , EmailAddress , ReferenceType , TelephoneNumber , PhysicalAddres
+     * EmailAddress , ReferenceType , TelephoneNumber , PhysicalAddres
      * 
      * */
     
     
-    public class QDate {
-        public string data {get;set;}
-    }
+    // public class QDate {
+    //     public string data {get;set;}
+    // }
 
-    public class QDateTime {
-        //public string dateTime {get;set;}
-    }
+    // public class QDateTime {
+    //     //public string dateTime {get;set;}
+    // }
     
     public class EmailAddress{
         public string Address {get;set;}
@@ -82,7 +82,7 @@ public abstract class QboDataObject {
     public class CreditCardChargeResponse{
         public string Status {get;set;}
         public string AuthCode {get;set;}
-        public QDatetime TxnAuthorizationTime {get;set;}
+        public DateTime TxnAuthorizationTime {get;set;}
         public string CCTransId {get;set;}
 
     }

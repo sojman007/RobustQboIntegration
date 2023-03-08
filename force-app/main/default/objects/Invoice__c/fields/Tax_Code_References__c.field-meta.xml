@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tax_Code_References__c</fullName>
+    <externalId>false</externalId>
+    <label>Tax Code References</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Anaheim, CA</fullName>
+                <default>false</default>
+                <label>Anaheim, CA</label>
+            </value>
+            <value>
+                <fullName>Aurora, CO</fullName>
+                <default>false</default>
+                <label>Aurora, CO</label>
+            </value>
+            <value>
+                <fullName>Beaumont, TX</fullName>
+                <default>false</default>
+                <label>Beaumont, TX</label>
+            </value>
+            <value>
+                <fullName>BKLN &amp; BRNX Special - Inactive</fullName>
+                <default>false</default>
+                <label>BKLN &amp; BRNX Special - Inactive</label>
+            </value>
+            <value>
+                <fullName>Bloomington, MN</fullName>
+                <default>false</default>
+                <label>Bloomington, MN</label>
+            </value>
+            <value>
+                <fullName>Boston, MA</fullName>
+                <default>false</default>
+                <label>Boston, MA</label>
+            </value>
+            <value>
+                <fullName>Boynton Beach, FL</fullName>
+                <default>false</default>
+                <label>Boynton Beach, FL</label>
+            </value>
+            <value>
+                <fullName>CA</fullName>
+                <default>false</default>
+                <label>CA</label>
+            </value>
+            <value>
+                <fullName>CALEDONIA, MI</fullName>
+                <default>false</default>
+                <label>CALEDONIA, MI</label>
+            </value>
+            <value>
+                <fullName>Canandaigua, NY</fullName>
+                <default>false</default>
+                <label>Canandaigua, NY</label>
+            </value>
+            <value>
+                <fullName>Canoga Park, CA</fullName>
+                <default>false</default>
+                <label>Canoga Park, CA</label>
+            </value>
+            <value>
+                <fullName>Canton, MI</fullName>
+                <default>false</default>
+                <label>Canton, MI</label>
+            </value>
+            <value>
+                <fullName>Chapel Hill, NC</fullName>
+                <default>false</default>
+                <label>Chapel Hill, NC</label>
+            </value>
+            <value>
+                <fullName>Charlotte, NC</fullName>
+                <default>false</default>
+                <label>Charlotte, NC</label>
+            </value>
+            <value>
+                <fullName>Chicago, IL</fullName>
+                <default>false</default>
+                <label>Chicago, IL</label>
+            </value>
+            <value>
+                <fullName>Cincinnati, OH</fullName>
+                <default>false</default>
+                <label>Cincinnati, OH</label>
+            </value>
+            <value>
+                <fullName>Connecticut</fullName>
+                <default>false</default>
+                <label>Connecticut</label>
+            </value>
+            <value>
+                <fullName>CT - Inactive</fullName>
+                <default>false</default>
+                <label>CT - Inactive</label>
+            </value>
+            <value>
+                <fullName>Denver, CO</fullName>
+                <default>false</default>
+                <label>Denver, CO</label>
+            </value>
+            <value>
+                <fullName>Des Plaines, IL</fullName>
+                <default>false</default>
+                <label>Des Plaines, IL</label>
+            </value>
+            <value>
+                <fullName>Detroit, MI</fullName>
+                <default>false</default>
+                <label>Detroit, MI</label>
+            </value>
+            <value>
+                <fullName>Farmington Hills, MI</fullName>
+                <default>false</default>
+                <label>Farmington Hills, MI</label>
+            </value>
+            <value>
+                <fullName>Fife, WA</fullName>
+                <default>false</default>
+                <label>Fife, WA</label>
+            </value>
+            <value>
+                <fullName>Grand Prairie, TX</fullName>
+                <default>false</default>
+                <label>Grand Prairie, TX</label>
+            </value>
+            <value>
+                <fullName>Greensboro, NC</fullName>
+                <default>false</default>
+                <label>Greensboro, NC</label>
+            </value>
+            <value>
+                <fullName>Houston, TX</fullName>
+                <default>false</default>
+                <label>Houston, TX</label>
+            </value>
+            <value>
+                <fullName>Inglewood, CA</fullName>
+                <default>false</default>
+                <label>Inglewood, CA</label>
+            </value>
+            <value>
+                <fullName>King Of Prussia, PA</fullName>
+                <default>false</default>
+                <label>King Of Prussia, PA</label>
+            </value>
+            <value>
+                <fullName>Las Vegas, NV</fullName>
+                <default>false</default>
+                <label>Las Vegas, NV</label>
+            </value>
+            <value>
+                <fullName>Lawrenceville,GA</fullName>
+                <default>false</default>
+                <label>Lawrenceville,GA</label>
+            </value>
+            <value>
+                <fullName>Long Beach, CA</fullName>
+                <default>false</default>
+                <label>Long Beach, CA</label>
+            </value>
+            <value>
+                <fullName>Los Angeles, CA</fullName>
+                <default>false</default>
+                <label>Los Angeles, CA</label>
+            </value>
+            <value>
+                <fullName>Marlborough, MA</fullName>
+                <default>false</default>
+                <label>Marlborough, MA</label>
+            </value>
+            <value>
+                <fullName>Miami, FL</fullName>
+                <default>false</default>
+                <label>Miami, FL</label>
+            </value>
+            <value>
+                <fullName>Mokena, IL</fullName>
+                <default>false</default>
+                <label>Mokena, IL</label>
+            </value>
+            <value>
+                <fullName>Mount Vernon</fullName>
+                <default>false</default>
+                <label>Mount Vernon</label>
+            </value>
+            <value>
+                <fullName>New Bedford, MA</fullName>
+                <default>false</default>
+                <label>New Bedford, MA</label>
+            </value>
+            <value>
+                <fullName>New Jersey</fullName>
+                <default>false</default>
+                <label>New Jersey</label>
+            </value>
+            <value>
+                <fullName>New Jersey - Inactive</fullName>
+                <default>false</default>
+                <label>New Jersey - Inactive</label>
+            </value>
+            <value>
+                <fullName>New Rochelle</fullName>
+                <default>false</default>
+                <label>New Rochelle</label>
+            </value>
+            <value>
+                <fullName>NJ - Inactive</fullName>
+                <default>false</default>
+                <label>NJ - Inactive</label>
+            </value>
+            <value>
+                <fullName>non TAX</fullName>
+                <default>false</default>
+                <label>non TAX</label>
+            </value>
+            <value>
+                <fullName>NYC</fullName>
+                <default>false</default>
+                <label>NYC</label>
+            </value>
+            <value>
+                <fullName>Oak Brooke, IL</fullName>
+                <default>false</default>
+                <label>Oak Brooke, IL</label>
+            </value>
+            <value>
+                <fullName>Onondaga Cty</fullName>
+                <default>false</default>
+                <label>Onondaga Cty</label>
+            </value>
+            <value>
+                <fullName>Oriskany, N.Y.</fullName>
+                <default>false</default>
+                <label>Oriskany, N.Y.</label>
+            </value>
+            <value>
+                <fullName>Oriskany, NY - Inactive</fullName>
+                <default>false</default>
+                <label>Oriskany, NY - Inactive</label>
+            </value>
+            <value>
+                <fullName>Orlando, FL</fullName>
+                <default>false</default>
+                <label>Orlando, FL</label>
+            </value>
+            <value>
+                <fullName>Oxnard, CA</fullName>
+                <default>false</default>
+                <label>Oxnard, CA</label>
+            </value>
+            <value>
+                <fullName>Phelps, N.Y.</fullName>
+                <default>false</default>
+                <label>Phelps, N.Y.</label>
+            </value>
+            <value>
+                <fullName>Phelps, NY - Inactive</fullName>
+                <default>false</default>
+                <label>Phelps, NY - Inactive</label>
+            </value>
+            <value>
+                <fullName>Pompano Beach, FL</fullName>
+                <default>false</default>
+                <label>Pompano Beach, FL</label>
+            </value>
+            <value>
+                <fullName>Putnam</fullName>
+                <default>false</default>
+                <label>Putnam</label>
+            </value>
+            <value>
+                <fullName>Rhode Island</fullName>
+                <default>false</default>
+                <label>Rhode Island</label>
+            </value>
+            <value>
+                <fullName>Richardson, TX</fullName>
+                <default>false</default>
+                <label>Richardson, TX</label>
+            </value>
+            <value>
+                <fullName>Richardson, TX - Inactive</fullName>
+                <default>false</default>
+                <label>Richardson, TX - Inactive</label>
+            </value>
+            <value>
+                <fullName>RKLND</fullName>
+                <default>false</default>
+                <label>RKLND</label>
+            </value>
+            <value>
+                <fullName>Sales Tax</fullName>
+                <default>false</default>
+                <label>Sales Tax</label>
+            </value>
+            <value>
+                <fullName>Salt Lake City, Utah</fullName>
+                <default>false</default>
+                <label>Salt Lake City, Utah</label>
+            </value>
+            <value>
+                <fullName>Saratoga County</fullName>
+                <default>false</default>
+                <label>Saratoga County</label>
+            </value>
+            <value>
+                <fullName>Smithfield, RI</fullName>
+                <default>false</default>
+                <label>Smithfield, RI</label>
+            </value>
+            <value>
+                <fullName>Springfield, MA</fullName>
+                <default>false</default>
+                <label>Springfield, MA</label>
+            </value>
+            <value>
+                <fullName>Stockton, CA</fullName>
+                <default>false</default>
+                <label>Stockton, CA</label>
+            </value>
+            <value>
+                <fullName>Stockton, CA - Inactive</fullName>
+                <default>false</default>
+                <label>Stockton, CA - Inactive</label>
+            </value>
+            <value>
+                <fullName>Sunnyvale, CA</fullName>
+                <default>false</default>
+                <label>Sunnyvale, CA</label>
+            </value>
+            <value>
+                <fullName>Syracuse NY</fullName>
+                <default>false</default>
+                <label>Syracuse NY</label>
+            </value>
+            <value>
+                <fullName>TBA</fullName>
+                <default>false</default>
+                <label>TBA</label>
+            </value>
+            <value>
+                <fullName>TBD</fullName>
+                <default>false</default>
+                <label>TBD</label>
+            </value>
+            <value>
+                <fullName>Westchester</fullName>
+                <default>false</default>
+                <label>Westchester</label>
+            </value>
+            <value>
+                <fullName>White Plains</fullName>
+                <default>false</default>
+                <label>White Plains</label>
+            </value>
+            <value>
+                <fullName>White Plains - Inactive</fullName>
+                <default>false</default>
+                <label>White Plains - Inactive</label>
+            </value>
+            <value>
+                <fullName>Woodridge, IL</fullName>
+                <default>false</default>
+                <label>Woodridge, IL</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

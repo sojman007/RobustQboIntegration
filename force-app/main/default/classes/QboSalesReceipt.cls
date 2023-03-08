@@ -1,6 +1,6 @@
 public class QboSalesReceipt extends QboAbstractDataChildObject implements IConvertible, IChildrenable {
     
-    public List<QboInvoiceLine> Line {get;set;}
+    public List<QboSalesLine> Line {get;set;}
     
     public QboDataObject.EmailAddress BillEmailCc {get;set;}
     public QboDataObject.EmailAddress BillEmail {get;set;}
@@ -10,9 +10,9 @@ public class QboSalesReceipt extends QboAbstractDataChildObject implements IConv
     public QboDataObject.CreditCardPayment CreditCardPayment {get;set;}
     
     
-    public QboDataObject.QDate TxnDate {get;set;}
-    public QboDataObject.QDate DueDate {get;set;}
-    public QboDataObject.QDate ShipDate {get;set;}
+    public Date TxnDate {get;set;}
+    public Date DueDate {get;set;}
+    public Date ShipDate {get;set;}
     
     
     public QboDataObject.ReferenceType ClassRef {get;set;}
@@ -42,9 +42,9 @@ public class QboSalesReceipt extends QboAbstractDataChildObject implements IConv
     public boolean AllowOnlineCreditCardPayment {get;set;}
     public boolean ApplyTaxAfterDiscount {get;set;}
     
-    public decimal ExchangeRate {get;set;}
-    public decimal Deposit {get;set;}
-    public long TotalAmt {get;set;}
+    public double ExchangeRate {get;set;}
+    public double Deposit {get;set;}
+    public double TotalAmt {get;set;}
     public double HomeTotalAmt {get;set;}
     public double Balance {get;set;}
     public double HomeBalance {get;set;}
@@ -75,11 +75,11 @@ public class QboSalesReceipt extends QboAbstractDataChildObject implements IConv
         salesReceipt.Sync_Token__c = this.SyncToken;
         salesReceipt.Currency_Ref__c = this.CurrencyRef.value;
         salesReceipt.Bill_Email_Address__c = this.BillEmail.Address;
-        salesReceipt.Txn_Date__c = Date.valueOf(this.TxnDate.data);
+        salesReceipt.Txn_Date__c = this.TxnDate;
         salesReceipt.Ship_From_Address__c = this.ShipFromAddr.toString();
         salesReceipt.Ship_Address__c = this.ShipAddr.toString();
         salesReceipt.Amount__c = this.Amount;
-        salesReceipt.Ship_Date__c = Date.valueOf(this.ShipDate.data);
+        salesReceipt.Ship_Date__c = this.ShipDate;
         salesReceipt.Tracking_Number__c = this.TrackingNum;
         salesReceipt.Payment_Ref_Number__c = this.PaymentRefNum;
         salesReceipt.Global_Tax_Calculation__c = this.GlobalTaxCalculation;
