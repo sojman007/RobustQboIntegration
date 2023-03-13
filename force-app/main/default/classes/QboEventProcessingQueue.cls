@@ -1,7 +1,7 @@
 public virtual class QboEventProcessingQueue extends IAsyncCollectionDs_Link implements Queueable, Database.allowsCallouts {
 	
     public QBoEventProcessingQueue(List<Qbo_Event__c> events){
-        for(Qbo_Event__C event : events){
+        for(Qbo_Event__c event : events){
             super.addNode(new QboEventProcessingNode(event));
         }
     }
@@ -19,6 +19,10 @@ public virtual class QboEventProcessingQueue extends IAsyncCollectionDs_Link imp
             if(hasNext()){
                 index += 1;
                 execute();
+            }else{
+                QboInsertionTree tree = QboInsertionTree.getInstance();
+                System.debug('Tree size ' + tree.getSize());
+                System.enqueueJob(tree);
             }
         }catch(Exception e){
             QboLogger logger = QboLogger.getinstance();

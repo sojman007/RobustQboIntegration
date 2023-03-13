@@ -16,8 +16,7 @@ public class QBoAuthenticationRequest {
         
         
         public QBoAUthenticationResponse(HttpResponse res){
-            System.debug(res.getBody());
-           	success = res.getStatusCode() == 200;
+            success = res.getStatusCode() == 200;
             data = (Map<string,Object>)Json.deserializeUntyped(res.getBody());
             
         }
@@ -39,7 +38,6 @@ public class QBoAuthenticationRequest {
     
     public string getRequestBody(){
         string res = '';
-        System.debug('executing in mode ' + exMode.name());
         switch on exMode{
             when FRESH{
                 res = 'grant_type=authorization_code&code=' + accessCode + '&redirect_uri=' + redirectUrl;
@@ -47,7 +45,7 @@ public class QBoAuthenticationRequest {
             when REFRESH{
                 QbObjectSelector selector = new QbObjectSelector('QB_Token__c');
                 Qb_Token__c token = (QB_Token__c)selector.getMostRecent( QbObjectSelector.DbOp.CREATED,1)[0];
-                string refreshToken = token.Refresh_Token__c; 
+                string refreshToken = token.RefreshToken__c;
                 res = 'grant_type=refresh_token&refresh_token=' + refreshToken;
             }
             when else{

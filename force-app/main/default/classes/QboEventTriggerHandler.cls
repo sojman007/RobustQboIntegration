@@ -5,9 +5,8 @@ public class QboEventTriggerHandler {
         QboLogger logger = QboLogger.getinstance().log('events received : ' + Json.serialize(records));
         try{
             System.enqueueJob(new QBOEventProcessingQueue(records));
-            
         }catch(Exception e){
-            logger.log(e);    
+            logger.log(e);
         }
         logger.close();
         

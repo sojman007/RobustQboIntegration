@@ -22,6 +22,10 @@ public abstract class QboDataObject {
         return this instanceof IChildrenable;
         
     }
+
+    public virtual string getDTOClassName(){
+        return 'QboDataObject';
+    }
     
     
     

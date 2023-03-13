@@ -12,7 +12,8 @@ public abstract class QboAbstractDataChildObject extends QboDataObject{
     }
 
     protected virtual Sobject relateToParent(Sobject record){
-        record.put(this.relationshipField, this.parentId);
+        if(this.parentId != null && this.relationshipField != null)
+            record.put(this.relationshipField, this.parentId);
         return record;
     }
 

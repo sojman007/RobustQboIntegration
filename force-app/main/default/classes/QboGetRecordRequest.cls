@@ -1,5 +1,6 @@
 public class QboGetRecordRequest extends QboCalloutService.BaseRequest {
     
+    public class QboNoBearerTokenException extends Exception {}
     
     public QboGetRecordRequest(){
         httpMethod = 'GET';
@@ -20,7 +21,13 @@ public class QboGetRecordRequest extends QboCalloutService.BaseRequest {
         
     public override Map<string,string> getHeaders(){
         Map<String,string> existingHeaders = defaultHeaders();
-        existingHeaders.put('Authorization', 'Bearer ' + authenticationService.getJwtToken());
+        string token = authenticationService.getJwtToken();
+        if(string.isNotBlank(token)){
+            existingHeaders.put('Authorization', 'Bearer ' + token );
+        }else{
+            throw new QboNoBearerTokenException('Bearer Token Is Null !!!');
+        }
+
         
         return existingHeaders;
     } 
@@ -53,7 +60,7 @@ public class QboGetRecordRequest extends QboCalloutService.BaseRequest {
             string newJson = Json.serialize(topLevel.get(entityName));
             System.Type parseTarget = QboParseTargetfactory.getParseTarget(entityName);
             
-            logger.log('found parse target ' + parseTarget + '\n json data : ' + newJson);
+            logger.log('found parse target: ' + parseTarget + '\n for json data : ' + newJson);
 
             // NOTE : sets the Salesforce Id for when the operation is an update operation.
             // when its a create, the Id is not set , this logic is encapsulated in the QboDataObject
@@ -63,11 +70,11 @@ public class QboGetRecordRequest extends QboCalloutService.BaseRequest {
                 logger.log('found sf record id : ' + recordId);
                 parsedData.sfRecordId = recordid;
             }
-            logger.log('parsed data = > \n' +json.serialize(parsedData));
-            logger.close();
+            logger.log('parsed data => \n' +json.serialize(parsedData));
             QboInsertionTree.QboInsertionNode node = new QboInsertionTree.QboInsertionNode(parsedData);
-            QboInsertionTree tree = new QboInsertionTree(node);
-            System.enqueueJob(tree);
+            QboInsertionTree tree = QboInsertionTree.getInstance();
+            tree.add(node);
+            
         }
         
         public override Sobject getData(){

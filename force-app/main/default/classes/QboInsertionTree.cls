@@ -1,11 +1,39 @@
 public virtual class QboInsertionTree extends IAsyncCollectionDS_Link implements System.Queueable {
     
+    private  static QboInsertionTree instance;
     
+    public  static QboInsertionTree getInstance(QboInsertionNode Root){
+        if(instance == null){
+            instance = new QboInsertionTree(Root);
+        }else{
+            instance.add(root);
+        }
+        return instance;
+    }
+
+    public static QboInsertionTree getInstance(){
+        if(instance == null){
+            instance = new QboInsertionTree();
+        }
+        return instance;
+    }
+
+
+    public integer getSize(){
+        return this.nodes.size();
+    }
     
-    public QboInsertionTree(QboInsertionNode Root){
+    private QboInsertionTree(){
+
+    }
+
+    private QboInsertionTree(QboInsertionNode Root){
         this.addNode(root);
     }
     
+    public void add(QboInsertionNode node){
+        this.addNode(node);
+    }
     
     
     // can we abort the event processing queue job here ??
@@ -37,12 +65,16 @@ public virtual class QboInsertionTree extends IAsyncCollectionDS_Link implements
         try{
             QboInsertionNode toExecute = (QboInsertionNode)getNext();
             QboDataObject objectOfInterest = toExecute.getDataObject();
+            System.debug('Object of Interest is of type : ' + objectOfInterest.getDTOClassName());
             if(objectOfInterest.isConvertible()){
                 recordToInsert = ((IConvertible)objectOfInterest).convert();
                 upsert recordToinsert;
+                Id recordId = (Id)recordToInsert.get('Id');
+                System.debug('upserted record successfully with Id : ' + recordId +' For SobjectType : ' + recordId.getSobjectType());
             }
             if(objectOfInterest.isChildrenable()){
                 List<QboDataObject> children = ((IChildrenable)objectOfInterest).getChildren();
+                System.debug('upserted record has children : ' + children.size());
                 if(children != null && children.size()>0){
                     for(QboDataObject child : children){
                         QboInsertionNode node = new QboInsertionNode(child);
@@ -52,7 +84,6 @@ public virtual class QboInsertionTree extends IAsyncCollectionDS_Link implements
                 }
                 
             }
-            QboLogger.getinstance().log('Upserted Record with Id ' + recordToinsert.Id).close();
             
             if(this.hasNext()){
                 index += 1;
@@ -60,7 +91,10 @@ public virtual class QboInsertionTree extends IAsyncCollectionDS_Link implements
             }
         
         }catch(Exception e){
-        
+            System.debug('an exception has occured ' + e.getMessage() + '\n' + e.getStackTraceString());
+            QboLogger logger = QboLogger.getInstance();
+            logger.log(e);
+            logger.close();
         }
     }
     

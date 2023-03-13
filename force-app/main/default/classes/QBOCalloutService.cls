@@ -40,7 +40,7 @@ public class QBOCalloutService {
             if(String.isNotBlank(body)){
             	req.setBody(getBody());
             }
-            // how can we check if we have pending DML before calling out ? this is Fixed jhare
+            
             HttpResponse res = qbHttp.send(req);
             QboLogger logger = QboLogger.getinstance();
             logger.log(getRequestPath());

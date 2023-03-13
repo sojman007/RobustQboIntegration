@@ -24,7 +24,7 @@ public with sharing class QboUpdateToken_Queueable implements Queueable , Schedu
         try{
             Qb_Token__c token = new Qb_Token__c();
             token.put('Id', tokenId);
-            token.Refresh_Token__c = this.refreshT;
+            token.RefreshToken__c = this.refreshT;
             token.Jwt_Token_LifeSpan_Minutes__c = this.expiry;
             upsert token;
             if(ctx.equalsIgnoreCase('sch')){

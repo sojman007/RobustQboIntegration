@@ -13,6 +13,9 @@ public virtual class QboInvoice extends QboAbstractDataChildObject implements IC
     public QboDataObject.PhysicalAddress BillAddr {get;set;}
     public QboDataObject.PhysicalAddress ShipFromAddr {get;set;}
     
+    public override string getDTOClassName(){
+        return 'QboInvoice';
+    }
     
     public string DocNumber {get;set;}
     public string TrackingNum {get;set;}
@@ -29,6 +32,7 @@ public virtual class QboInvoice extends QboAbstractDataChildObject implements IC
     public QboDataObject.ReferenceType SalesTermRef {get;set;}
     public QBoDataObject.ReferenceType DepartmentRef {get;set;}
     public QBoDataObject.ReferenceType ShipMethodRef {get;set;}
+    public QBoDataObject.ReferenceType CurrencyRef {get;set;}
     
     public boolean AllowOnlineACHPayment {get;set;}
     public boolean AllowOnlineCreditCardPayment {get;set;}
@@ -36,12 +40,12 @@ public virtual class QboInvoice extends QboAbstractDataChildObject implements IC
     public boolean FreeFormAddress {get;set;}
     
 
-    public decimal ExchangeRate {get;set;}
-    public decimal Deposit {get;set;}
-    public decimal HomeBalance {get;set;}
-    public long TotalAmt {get;set;}
-    public decimal HomeTotalAmt {get;set;}
-    public decimal Balance {get;set;}
+    public double ExchangeRate {get;set;}
+    public double Deposit {get;set;}
+    public double HomeBalance {get;set;}
+    public double TotalAmt {get;set;}
+    public double HomeTotalAmt {get;set;}
+    public double Balance {get;set;}
 
 
     public  override Schema.SObjectType getSobjectType(){
@@ -58,12 +62,12 @@ public virtual class QboInvoice extends QboAbstractDataChildObject implements IC
         Invoice__c invoice  = (Invoice__c)setDefaults(new Invoice__c());
         invoice.Invoice_Due_Date__c = this.DueDate;
         invoice.Message_on_Invoice__c = this.PrivateNote;
-        invoice.Qb_Email__c = this.BillEmail.Address;
+        invoice.Qb_Email__c = this.BillEmail != null ? this.BillEmail.Address : '';
         invoice.Allow_Online_Ach_Payment__c = this.AllowOnlineACHPayment;
         invoice.Allow_Online_Credit_Card_Payment__c = this.AllowOnlineCreditCardPayment;
         invoice.Apply_Tax_After_Discount__c = this.ApplyTaxAfterDiscount;
         invoice.Balance__c = this.Balance;
-        invoice.Currency_Ref__c = this.CustomerRef.value;
+        invoice.Currency_Ref__c = this.CurrencyRef != null ? this.CurrencyRef.value :'';
         invoice.Deposit__c = this.Deposit;
         invoice.Email_Status__c = this.EmailStatus;
         invoice.Home_Total_Amount__c = this.HomeTotalAmt;
@@ -71,7 +75,7 @@ public virtual class QboInvoice extends QboAbstractDataChildObject implements IC
         invoice.Tracking_Number__c = this.TrackingNum;
         invoice.Transaction_Date__c = this.TxnDate;
         invoice.Transaction_Source__c = this.TxnSource;
-        invoice.Qb_Customer_Ref__c = this.CustomerRef.value;
+        invoice.Qb_Customer_Ref__c = this.CustomerRef != null ? this.CustomerRef.value :'';
         invoice.Doc_Number__c = this.DocNumber;
         invoice.Invoice_Link__c = this.InvoiceLink;
         invoice.FreeForm_Address__c = this.FreeFormAddress;

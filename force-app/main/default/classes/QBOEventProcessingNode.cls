@@ -16,14 +16,11 @@ public virtual class QBOEventProcessingNode extends IAsyncCollectionDsNode{
         QboDataSyncMetadaProvider meta = QboDataSyncMetadaProvider.getInstance(event.Entity__c);
         QboDataSyncMetadaProvider.Action eventAction = meta.getActionFromName(event.Operation__c.toLowerCase());
         QboLogger l = QboLogger.getinstance();
-                
         if(eventAction != null && meta.getAllowedActions().contains(eventAction)){
-            try{
-                QBoAbstractActionHandler handler = QboActionHandlerFactory.getAction(eventAction);
-                handler.execute(event);    
-            }catch(Exception e){
-               throw e;
-            }
+            System.debug('executing current Node  for event ' +event.Entity__c);
+            QBoAbstractActionHandler handler = QboActionHandlerFactory.getAction(eventAction);
+            handler.execute(event);    
+            
         }else{
             l.log(' An Invalid Action Unsubscribed action was invoked');
         }

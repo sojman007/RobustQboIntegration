@@ -4,7 +4,7 @@ public class QboAuthHandler {
     
     Cache.OrgPartition localStorage = Cache.Org.getPartition('local.QboCache');
     private boolean UseRefreshToken = false;
-
+    
     private map<string,Object> authResponseData;
     
     public static QboAuthHandler getInstance(){
@@ -22,17 +22,25 @@ public class QboAuthHandler {
         QbObjectSelector selector = new QbObjectSelector('QB_Token__c');
         List<Sobject> data = selector.getMostRecent(QbObjectSelector.DbOp.CREATED,1);
         QboLogger logger = QboLogger.getInstance();
-        logger.log('at instantiating auth handler : token is ' + JSON.serialize(data));
+        logger.log('Initializing auth handler with token record : \n ' + JSON.serialize(data));
         if(data != null && data.size() > 0){
             token = (QB_Token__c)data[0];
             accessCode = token.Auth_Token__c;
             realmId = token.Realm_Id__c;
-            UseRefreshToken = token.Refresh_Token__c != null && !refreshTokenIsExpired();
+            UseRefreshToken = token?.RefreshToken__c != null && !refreshTokenIsExpired();
         }else{
             // check Local storage for access Code ...
-            accessCode = (string)localStorage.get('accesscode');
-            realmId = (string)localStorage.get('realmId');
+            setAccessParamsFromCache();
         }
+        if(UseRefreshToken == false){
+            setAccessParamsFromCache();
+        }
+
+    }
+
+    private void setAccessParamsFromCache(){
+        accessCode = (string)localStorage.get('accesscode');
+        realmId = (string)localStorage.get('realmId');
     }
     
     // exposes api for other callers to access datapoints from the authentication HTTP callout
@@ -43,6 +51,7 @@ public class QboAuthHandler {
     // return jwt token 
     public string getJWTToken(){
         if(tokenIsExpired()){
+            UseRefreshToken = true;
             boolean authed = authenticate();
         }
         return (string)localStorage.get('jwt'); 
@@ -67,21 +76,36 @@ public class QboAuthHandler {
         Map<string,Object> responseData = res.get();
         authResponseData = responseData;
        	boolean success = false;
-        logger.log(' auth response :  ' + json.serialize(responseData));
+        // if refresh token flow , add the new refresh token update job to the insertion tree.
         if(res.success == true && responseData != null){
-            localStorage.put('jwt',responseData.get('access_token'));
+            string jwt = (String)responseData.get('access_token');
+            string refreshtoken = (String)responseData.get('refresh_token');
+            integer refreshExpiry =(Integer)responseData.get('x_refresh_token_expires_in');
+            localStorage.put('jwt',jwt);
             localStorage.put('expiry', DateTime.now().addMinutes(50));
             localStorage.put('lifetime', responseData.get('expires_in'));
-            localStorage.put('refreshtoken', responseData.get('refresh_token'));    
+            localStorage.put('refreshtoken', refreshtoken);    
         	success = true;
+            
+            if(UseRefreshToken ==true){
+                QboTokenDataObject tokenData = new QboTokenDataObject();
+                tokenData.refreshToken = refreshtoken;
+                tokenData.lastAuthDate = Datetime.now();
+                tokenData.refreshTokenExpiry = refreshExpiry;
+                QboInsertionTree.QboInsertionNode root = new QboInsertionTree.QboInsertionNode(tokenData);
+                QboInsertionTree insertionTree = QboInsertionTree.getInstance(root);
+            }
         }
+        logger.log('jwt token put in cache is now  : ' +localStorage.get('jwt'));
         return success;
     }
     
     // compute expiry of jwt token 
     private boolean tokenIsExpired(){
         DateTime tokenExpiry = (DateTime)localStorage.get('expiry');
+        System.debug('token expiry date time : ' +tokenExpiry);
         integer lifeTime = (integer)localStorage.get('lifetime');
+        System.debug( 'token lifetime ' + lifetime);
         if(tokenExpiry != null && lifeTime != null){
             return getMinuteDifference(DateTime.now() , tokenExpiry) >= lifeTime;
         }
@@ -96,13 +120,6 @@ public class QboAuthHandler {
         return (Integer)(firstL - secondL)/(60000);
     }
     
-    
-    // token doesnt have to be saved instantly so we can just schedule the save to maybe 5 minutes within validity window
-    // private void updateToken(string tokenId , integer jwtexpiry , string refreshtoken){
-    //     QboUpdateToken_Queueable queueableJob = new QboUpdateToken_Queueable(tokenId, jwtexpiry, refreshtoken);
-    //     System.enqueueJob(queueableJob);
-    // }
-
     // compute expiry of refresh token
     private boolean refreshTokenIsExpired(){
         Datetime refreshTokenBirth = this.token.Last_Auth_Date__c;

@@ -32,6 +32,11 @@ public class QboCustomer extends QBoDataObject implements IConvertible {
     public QboDataObject.PhysicalAddress ShipAddr {get;set;}
     public QboDataObject.PhysicalAddress BillAddr {get;set;}
    
+
+    public override string getDTOClassName(){
+        return 'QboCustomer';
+    }
+
     
     public  Sobject convert(){
         
